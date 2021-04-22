@@ -28,10 +28,12 @@ testAllButton.addEventListener('click', async () => {
 })
 
 
-function addEvaluator(method, resourceWithParamsFunction, bodyFunction, checkResponse) {
+function addEvaluator(params) {
+	const { method, title, resource: resourceFunction, body: bodyFunction, checkResponse } = params
 	let div = ce('div'), code = ce('code'), span1 = ce('span'), span2 = ce('span'), span3 = ce('span')
 	span1.innerHTML = status.notStarted
-	span2.innerHTML = `${method} ${resourceWithParamsFunction()}`
+	span2.innerHTML = `${method} ${title}`
+	span3.className = 'error-message'
 	code.appendChild(span1)
 	code.appendChild(span2)
 	div.appendChild(code)
@@ -43,7 +45,7 @@ function addEvaluator(method, resourceWithParamsFunction, bodyFunction, checkRes
 		// console.log('Evaluator started', span1.innerHTML);
 		span1.innerHTML = status.inProgress
 		try {
-			const resource = urlInput.value + resourceWithParamsFunction()
+			const resource = urlInput.value + resourceFunction()
 			const body = JSON.stringify( bodyFunction() )
 			const hasRequestBody = (method != 'GET' && method != 'DELETE')
 			const hasResponseBody = (method == 'GET' || method == 'POST')

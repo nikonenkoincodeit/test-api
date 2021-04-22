@@ -1,10 +1,14 @@
-export const ev = {
-	status200: (status, element) => {
-		if( status == '200' ) return true;
-		element.innerHTML = 'Response status is not 200.'
-		return false
-	},
+function statusCode(status, code, el, msg) {
+	if( status == code ) return true;
+	el.innerHTML = msg
+	return false
+}
 
+export const ev = {
+	status200: (status, element) => statusCode(status, 200, element, 'Response status is not 200. (ok)'),
+	status400: (status, element) => statusCode(status, 400, element, 'Response status is not 400. (bad request)'),
+	status404: (status, element) => statusCode(status, 404, element, 'Response status is not 404. (not found)'),
+	
 	isArray: (body, element) => {
 		if( Array.isArray(body) ) return true;
 		element.innerHTML = 'Does not respond with an array.'
@@ -18,7 +22,6 @@ export const ev = {
 	},
 
 	isHamster: (object, element) => {
-		console.log('isHamster', object);
 		// Test if object has certain properties
 		if( object && ['name', 'age', 'favFood', 'loves', 'imgName', 'wins', 'defeats', 'games'].every(o => object.hasOwnProperty(o)) )
 			return true

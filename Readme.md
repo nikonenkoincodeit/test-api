@@ -32,3 +32,7 @@ Ordförklaringar
 * REST: API som använder HTTP-metoderna GET, POST, PUT och DELETE på det sätt vi gått igenom i kursen
 * SPA: Single Page App, en frontend/webbapp som använder AJAX i stället för att ladda om sidan
 * AJAX: "Asynchronous JAvaScript with XML", teknik för att skicka HTTP request; vi använder XMLHttpRequest, fetch, axios eller jQuery.ajax för det.
+
+
+### Test-skript
+Skriv `npm run start` för att starta en lokal webbserver. Öppna index.html i en webbläsare och skriv in URL till din server för att testa.
